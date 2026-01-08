@@ -53,14 +53,14 @@ export default function Header() {
               height={32}
               className="w-8 h-8 rounded-full"
             />
-            <span className="text-xl font-bold text-gray-900">zkPull</span>
+            <span className="text-xl font-medium text-gray-900">zkPull</span>
           </Link>
         </nav>
 
         <nav>
           <ul className="hidden md:flex gap-5 items-center font-medium text-sm text-gray-700">
             <li className="hover:text-gray-900 transition-colors">
-              <Link href="/issues/create">Create Issues</Link>
+              <Link href="/create-bounty">Create Bounty</Link>
             </li>
             <li className="hover:text-gray-900 transition-colors">
               <Link href="/issues">Explore Issues</Link>
@@ -70,9 +70,6 @@ export default function Header() {
             </li>
             <li className="hover:text-gray-900 transition-colors">
               <Link href="/leaderboard">Leaderboard</Link>
-            </li>
-            <li className="hover:text-gray-900 transition-colors">
-              <Link href="https://bimajdiva.gitbook.io/wearelazydev" target="blank">Documentation</Link>
             </li>
             <li>
               <WalletConnect />
@@ -91,7 +88,7 @@ export default function Header() {
           <nav className="font-medium fixed w-full h-full top-0 left-0 flex flex-col gap-5 items-center justify-center bg-white text-gray-900 z-50 animate-in slide-in-from-right duration-500">
             <ul className="flex flex-col gap-5">
               <li>
-                <Link href="/issues/create">Create Issues</Link>
+                <Link href="/create-bounty">Create Bounty</Link>
               </li>
               <li>
                 <Link href="/issues">Explore Issues</Link>
