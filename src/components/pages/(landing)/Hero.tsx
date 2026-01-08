@@ -107,6 +107,20 @@ export default function Hero() {
           </div>
         </div>
       </div>
+      
+      <div className="absolute bottom-[-5] left-[-4] z-20">
+        <div className="w-6 h-6">
+          <div className="absolute bottom-0 left-1 w-6 h-2 border-l-2 border-b-2 border-black"></div>
+        </div>
+      </div>
+
+      <div className="absolute bg-gray-200 bottom-[-5] w-[99%] flex items-center justify-center border border-gray-200"></div>
+
+      <div className="absolute bottom-[-5] right-[-1] z-20">
+        <div className="w-6 h-6">
+          <div className="absolute bottom-0 right-0 w-6 h-2 border-r-2 border-b-2 border-black"></div>
+        </div>
+      </div>
     </div>
   );
 }
