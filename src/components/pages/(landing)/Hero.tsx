@@ -1,6 +1,8 @@
 import { Button } from "../../ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { HiArrowRight } from "react-icons/hi2";
+import { Highlighter } from "@/components/ui/highlighter";
 
 export default function Hero() {
   return (
@@ -65,11 +67,11 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="px-8 py-12 bg-gray-50 relative">
+        <div className="px-9 py-5 bg-gray-50 relative">
           <div className="max-w-4xl">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
-              Earn rewards through Pull Requests with{" "}
-              <span className="italic text-gray-600">zkTLS</span>
+              Start your open source contribution and earn rewards with{" "}
+                <Highlighter action="underline" color="#FF9800">zkTLS</Highlighter> validation
             </h1>
 
             <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-8 max-w-2xl">
@@ -79,25 +81,27 @@ export default function Hero() {
               validation on the Mantle blockchain.
             </p>
 
-            <div className="flex items-center gap-3 mb-6">
-              <Image
-                src="/images/Logo/mantle-logo.png"
-                alt="Mantle"
-                width={120}
-                height={36}
-                className="opacity-80"
-              />
-              <span className="text-base text-gray-700 font-medium">
-                Built on Mantle
-              </span>
-            </div>
-
-            <div>
-              <Button
-                size="lg"
-                className="bg-black hover:bg-gray-800 text-white px-10 py-4 text-lg font-medium cursor-pointer rounded-full"
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <span className="text-base text-gray-700 font-medium">
+                  Built on
+                </span>
+                <Image
+                  src="/images/Logo/mantle-logo.png"
+                  alt="Mantle"
+                  width={120}
+                  height={36}
+                  className="opacity-80"
+                />
+              </div>
+              <Button 
+                asChild
+                className="cursor-pointer bg-black text-white hover:bg-gray-800"
               >
-                <Link href="/issues">Start now</Link>
+                <Link href="/issues" className="flex items-center gap-2">
+                  Start Your Contribution
+                  <HiArrowRight className="w-4 h-4" />
+                </Link>
               </Button>
             </div>
           </div>
