@@ -58,18 +58,118 @@ export default function Header() {
         </nav>
 
         <nav>
-          <ul className="hidden md:flex gap-5 items-center font-medium text-sm text-gray-700">
-            <li className="hover:text-gray-900 transition-colors">
-              <Link href="/create-bounty">Create Bounty</Link>
+          <ul className="hidden md:flex gap-3 items-center font-medium text-sm text-gray-700">
+            <li>
+              <Link
+                href="/create-bounty"
+                className={`relative rounded-lg px-4 py-2 transition-all duration-200 cursor-pointer ${
+                  pathname === "/create-bounty"
+                    ? "bg-gray-900 text-white border border-gray-900"
+                    : "bg-white border border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                <span
+                  className={`absolute top-0 left-0 w-3 h-3 rounded-tl-md ${
+                    pathname === "/create-bounty"
+                      ? "border-white"
+                      : "border-gray-400"
+                  }`}
+                ></span>
+                <span
+                  className={`absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 rounded-tr-md ${
+                    pathname === "/create-bounty"
+                      ? "border-white"
+                      : "border-gray-400"
+                  }`}
+                ></span>
+                <span
+                  className={`absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 rounded-bl-md ${
+                    pathname === "/create-bounty"
+                      ? "border-white"
+                      : "border-gray-400"
+                  }`}
+                ></span>
+                <span
+                  className={`absolute bottom-0 right-0 w-3 h-3 rounded-br-md ${
+                    pathname === "/create-bounty"
+                      ? "border-white"
+                      : "border-gray-400"
+                  }`}
+                ></span>
+                Create Bounty
+              </Link>
             </li>
-            <li className="hover:text-gray-900 transition-colors">
-              <Link href="/issues">Explore Issues</Link>
+            <li>
+              <Link
+                href="/issues"
+                className={`relative rounded-lg px-4 py-2 transition-all duration-200 cursor-pointer ${
+                  pathname === "/issues"
+                    ? "bg-gray-900 text-white border border-gray-900"
+                    : "bg-white border border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                <span
+                  className={`absolute top-0 left-0 w-3 h-3 rounded-tl-md ${
+                    pathname === "/issues" ? "border-white" : "border-gray-400"
+                  }`}
+                ></span>
+                <span
+                  className={`absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 rounded-tr-md ${
+                    pathname === "/issues" ? "border-white" : "border-gray-400"
+                  }`}
+                ></span>
+                <span
+                  className={`absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 rounded-bl-md ${
+                    pathname === "/issues" ? "border-white" : "border-gray-400"
+                  }`}
+                ></span>
+                <span
+                  className={`absolute bottom-0 right-0 w-3 h-3 rounded-br-md ${
+                    pathname === "/issues" ? "border-white" : "border-gray-400"
+                  }`}
+                ></span>
+                Explore Bounty
+              </Link>
             </li>
-            <li className="hover:text-gray-900 transition-colors">
-              <Link href="/swap">Swap Token</Link>
-            </li>
-            <li className="hover:text-gray-900 transition-colors">
-              <Link href="/leaderboard">Leaderboard</Link>
+            <li>
+              <Link
+                href="/leaderboard"
+                className={`relative rounded-lg px-4 py-2 transition-all duration-200 cursor-pointer ${
+                  pathname === "/leaderboard"
+                    ? "bg-gray-900 text-white border border-gray-900"
+                    : "bg-white border border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                <span
+                  className={`absolute top-0 left-0 w-3 h-3 rounded-tl-md ${
+                    pathname === "/leaderboard"
+                      ? "border-white"
+                      : "border-gray-400"
+                  }`}
+                ></span>
+                <span
+                  className={`absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 rounded-tr-md ${
+                    pathname === "/leaderboard"
+                      ? "border-white"
+                      : "border-gray-400"
+                  }`}
+                ></span>
+                <span
+                  className={`absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 rounded-bl-md ${
+                    pathname === "/leaderboard"
+                      ? "border-white"
+                      : "border-gray-400"
+                  }`}
+                ></span>
+                <span
+                  className={`absolute bottom-0 right-0 w-3 h-3 rounded-br-md ${
+                    pathname === "/leaderboard"
+                      ? "border-white"
+                      : "border-gray-400"
+                  }`}
+                ></span>
+                Leaderboard
+              </Link>
             </li>
             <li>
               <WalletConnect />
@@ -91,16 +191,18 @@ export default function Header() {
                 <Link href="/create-bounty">Create Bounty</Link>
               </li>
               <li>
-                <Link href="/issues">Explore Issues</Link>
-              </li>
-              <li>
-                <Link href="/swap">Swap Token</Link>
+                <Link href="/issues">Explore Bounty</Link>
               </li>
               <li>
                 <Link href="/leaderboard">Leaderboard</Link>
               </li>
               <li>
-                <Link href="https://bimajdiva.gitbook.io/wearelazydev" target="blank">Documentation</Link>
+                <Link
+                  href="https://bimajdiva.gitbook.io/wearelazydev"
+                  target="blank"
+                >
+                  Documentation
+                </Link>
               </li>
             </ul>
             <X
