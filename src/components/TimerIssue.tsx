@@ -64,7 +64,7 @@ const TimerIssue = ({ deadline }: TimerIssueProps) => {
 
     return (
         <main className="space-y-2">
-            <p className="text-sm text-center font-bold">Deadline: {formatDeadlineDate(deadline)}</p>
+            <p className="text-sm text-center font-bold text-black">Deadline: {formatDeadlineDate(deadline)}</p>
             <div className="relative flex items-center justify-center">
                 <Progress value={progress} className="h-10" />
                 <p className="flex items-center gap-2 absolute text-primary-foreground font-bold">
