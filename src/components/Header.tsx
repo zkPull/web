@@ -133,42 +133,42 @@ export default function Header() {
             </li>
             <li>
               <Link
-                href="/leaderboard"
+                href="/profile"
                 className={`relative rounded-lg px-4 py-2 transition-all duration-200 cursor-pointer ${
-                  pathname === "/leaderboard"
+                  pathname === "/profile"
                     ? "bg-[#ffefc5] text-black font-light border border-[#ffefc5]"
                     : "bg-white border border-gray-300 hover:bg-gray-50"
                 }`}
               >
                 <span
                   className={`absolute top-0 left-0 w-3 h-3 rounded-tl-md ${
-                    pathname === "/leaderboard"
+                    pathname === "/profile"
                       ? "border-white"
                       : "border-gray-400"
                   }`}
                 ></span>
                 <span
                   className={`absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 rounded-tr-md ${
-                    pathname === "/leaderboard"
+                    pathname === "/profile"
                       ? "border-white"
                       : "border-gray-400"
                   }`}
                 ></span>
                 <span
                   className={`absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 rounded-bl-md ${
-                    pathname === "/leaderboard"
+                    pathname === "/profile"
                       ? "border-white"
                       : "border-gray-400"
                   }`}
                 ></span>
                 <span
                   className={`absolute bottom-0 right-0 w-3 h-3 rounded-br-md ${
-                    pathname === "/leaderboard"
+                    pathname === "/profile"
                       ? "border-white"
                       : "border-gray-400"
                   }`}
                 ></span>
-                Leaderboard
+                Profile
               </Link>
             </li>
             <li>
@@ -194,7 +194,7 @@ export default function Header() {
                 <Link href="/issues">Explore Bounty</Link>
               </li>
               <li>
-                <Link href="/leaderboard">Leaderboard</Link>
+                <Link href="/profile">Profile</Link>
               </li>
               <li>
                 <Link
