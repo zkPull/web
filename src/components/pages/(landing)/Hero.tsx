@@ -7,15 +7,20 @@ export default function Hero() {
     <div className="max-w-7xl mx-auto px-3 py-1 relative">
       <div className="absolute left-0 top-1 bottom-0 w-px bg-gray-200"></div>
       <div className="absolute right-0 top-1 bottom-0 w-px bg-gray-200"></div>
-      <div className="bg-white overflow-hidden border-t border-gray-300 relative">
-        <div className="absolute top-1 left-1 z-20">
-          <div className="w-4 h-4 border-l-2 border-t-2 border-gray-400"></div>
+      <div className="absolute top-[-5] left-[-4] z-20">
+        <div className="w-6 h-6">
+          <div className="absolute top-0 left-1 w-6 h-2 border-l-2 border-t-2 border-black"></div>
         </div>
-        
-        <div className="absolute top-1 right-1 z-20">
-          <div className="w-4 h-4 border-r-2 border-t-2 border-gray-400"></div>
+      </div>
+
+      <div className="absolute bg-gray-200 top-[-5] w-[99%] flex items-center justify-center border border-gray-200"></div>
+
+      <div className="absolute top-[-5] right-[-1] z-20">
+        <div className="w-6 h-6">
+          <div className="absolute top-0 right-0 w-6 h-2 border-r-2 border-t-2 border-black"></div>
         </div>
-        
+      </div>
+      <div className="bg-white overflow-hidden border-t border-gray-300">
         <div className="relative h-[400px] md:h-[500px]">
           <Image
             src="/images/Background/bg-zkpull.png"
