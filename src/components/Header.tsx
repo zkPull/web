@@ -53,7 +53,7 @@ export default function Header() {
               height={32}
               className="w-8 h-8 rounded-full"
             />
-            <span className="text-xl font-medium text-gray-900">zkPull</span>
+            <span className="text-xl font-medium text-black">zkPull</span>
           </Link>
         </nav>
 
@@ -64,7 +64,7 @@ export default function Header() {
                 href="/create-bounty"
                 className={`relative rounded-lg px-4 py-2 transition-all duration-200 cursor-pointer ${
                   pathname === "/create-bounty"
-                    ? "bg-gray-900 text-white border border-gray-900"
+                    ? "bg-[#ffefc5] text-black font-light border border-[#ffefc5]"
                     : "bg-white border border-gray-300 hover:bg-gray-50"
                 }`}
               >
@@ -104,7 +104,7 @@ export default function Header() {
                 href="/issues"
                 className={`relative rounded-lg px-4 py-2 transition-all duration-200 cursor-pointer ${
                   pathname === "/issues"
-                    ? "bg-gray-900 text-white border border-gray-900"
+                    ? "bg-[#ffefc5] text-black font-light border border-[#ffefc5]"
                     : "bg-white border border-gray-300 hover:bg-gray-50"
                 }`}
               >
@@ -136,7 +136,7 @@ export default function Header() {
                 href="/leaderboard"
                 className={`relative rounded-lg px-4 py-2 transition-all duration-200 cursor-pointer ${
                   pathname === "/leaderboard"
-                    ? "bg-gray-900 text-white border border-gray-900"
+                    ? "bg-[#ffefc5] text-black font-light border border-[#ffefc5]"
                     : "bg-white border border-gray-300 hover:bg-gray-50"
                 }`}
               >
@@ -185,7 +185,7 @@ export default function Header() {
         </nav>
 
         {open && (
-          <nav className="font-medium fixed w-full h-full top-0 left-0 flex flex-col gap-5 items-center justify-center bg-white text-gray-900 z-50 animate-in slide-in-from-right duration-500">
+          <nav className="font-medium fixed w-full h-full top-0 left-0 flex flex-col gap-5 items-center justify-center bg-white text-[#ffefc5] z-50 animate-in slide-in-from-right duration-500">
             <ul className="flex flex-col gap-5">
               <li>
                 <Link href="/create-bounty">Create Bounty</Link>
@@ -207,7 +207,7 @@ export default function Header() {
             </ul>
             <X
               onClick={openMenu}
-              className="absolute top-5 right-5 cursor-pointer text-gray-900"
+              className="absolute top-5 right-5 cursor-pointer text-[#ffefc5]"
             />
           </nav>
         )}

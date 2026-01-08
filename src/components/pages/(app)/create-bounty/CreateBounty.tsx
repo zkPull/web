@@ -97,7 +97,7 @@ export default function CreateBounty() {
       <div className="bg-white overflow-hidden border-t border-gray-300">
         <div className="relative h-[100px] md:h-[200px]">
           <Image
-            src="/images/Background/step-1.png"
+            src="/images/Background/bg-create-bounty.png"
             alt="Create Issue Background"
             fill
             className="object-cover"
