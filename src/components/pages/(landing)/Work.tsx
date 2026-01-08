@@ -44,8 +44,8 @@ export default function Work() {
                 />
               </div>
               <div className="p-6 bg-white">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center text-sm font-bold">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-sm font-bold">
                     1
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900">
@@ -74,8 +74,8 @@ export default function Work() {
                 />
               </div>
               <div className="p-6 bg-white">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center text-sm font-bold">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-sm font-bold">
                     2
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900">
@@ -104,8 +104,8 @@ export default function Work() {
                 />
               </div>
               <div className="p-6 bg-white">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center text-sm font-bold">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-sm font-bold">
                     3
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900">
