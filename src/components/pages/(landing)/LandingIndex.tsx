@@ -5,8 +5,8 @@ export default function LandingIndex() {
   return (
     <main>
       <Hero />
-      {/* <Work />
-      <Issue /> */}
+      <Work />
+      {/* <Issue /> */}
     </main>
   );
 }
