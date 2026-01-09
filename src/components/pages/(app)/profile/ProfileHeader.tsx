@@ -22,10 +22,12 @@ export default function ProfileHeader({ address }: ProfileHeaderProps) {
           />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Developer Profile</h1>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+            Developer Profile
+          </h1>
           <div className="space-y-1">
             <p className="text-sm text-gray-600">Wallet Address</p>
-            <p className="font-mono text-gray-900 bg-gray-50 px-3 py-1 rounded border">
+            <p className="font-mono text-gray-900 bg-gray-50 px-3 py-1 rounded border inline-block">
               {shortenAddress(address)}
             </p>
           </div>

@@ -44,7 +44,7 @@ export default function Header() {
                 : ""
             }`}
       >
-        <nav>
+        <nav className="ml-3">
           <Link href="/" className="flex items-center gap-2">
             <Image
               src="/images/Logo/zkpull-logo.png"

@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useWallet } from "@/lib/hooks/use-wallet";
-import { FaCode, FaAward, FaDollarSign, FaCodeBranch } from "react-icons/fa";
+import { FaCode, FaAward, FaCodeBranch } from "react-icons/fa";
 import CornerLayout from "./CornerLayout";
 import WalletConnectSection from "./WalletConnectSection";
 import ProfileHeader from "./ProfileHeader";
