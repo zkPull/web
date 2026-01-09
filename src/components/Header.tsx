@@ -196,14 +196,6 @@ export default function Header() {
               <li>
                 <Link href="/profile">Profile</Link>
               </li>
-              <li>
-                <Link
-                  href="https://bimajdiva.gitbook.io/wearelazydev"
-                  target="blank"
-                >
-                  Documentation
-                </Link>
-              </li>
             </ul>
             <X
               onClick={openMenu}

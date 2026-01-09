@@ -49,7 +49,7 @@ export default function GithubAuthSection({
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6 space-y-4">
       <h3 className="text-lg font-semibold text-gray-900">
-        Submit Pull Request
+        Submit your Pull Request URL
       </h3>
 
       <div className="space-y-3">

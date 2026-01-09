@@ -14,6 +14,7 @@ import IssueHeader from "./IssueHeader";
 import GithubAuthSection from "./GithubAuthSection";
 import IssueDescription from "./IssueDescription";
 import ValidationResults from "./ValidationResults";
+import GeneratingProofPopup from "./GeneratingProofPopup";
 import TimerIssue from "@/components/TimerIssue";
 
 export default function IssueDetail() {
@@ -183,6 +184,8 @@ export default function IssueDetail() {
           />
         </main>
       </div>
+      
+      <GeneratingProofPopup isVisible={isFetching} />
     </CornerLayout>
   );
 }

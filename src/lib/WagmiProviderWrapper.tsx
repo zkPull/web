@@ -17,7 +17,7 @@ import "@rainbow-me/rainbowkit/styles.css";
 const queryClient = new QueryClient();
 const { wallets } = getDefaultWallets();
 const config = getDefaultConfig({
-    appName: "wearelazydev",
+    appName: "zkPull",
     projectId: "fe575b36234dc9b54e34a40e332d7f92",
     wallets: [
         ...wallets,

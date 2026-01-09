@@ -10,8 +10,8 @@ import {
 } from 'wagmi/chains';
 
 export const wagmiConfig = getDefaultConfig({
-    appName: 'wearelazydev.',
-    appDescription: "wearelazydev rewards PR with zkTLS",
+    appName: 'zkPull.',
+    appDescription: "Starting your zk journey with proof generation for GitHub Pull Requests.",
     projectId: env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
     chains: [
         mainnet,
