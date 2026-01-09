@@ -13,7 +13,7 @@ import CornerLayout from "./CornerLayout";
 import IssueHeader from "./IssueHeader";
 import GithubAuthSection from "./GithubAuthSection";
 import IssueDescription from "./IssueDescription";
-import ValidationResults from "./ValidationResults";
+import HorizontalValidationResults from "./HorizontalValidationResults";
 import GeneratingProofPopup from "./GeneratingProofPopup";
 import TimerIssue from "@/components/TimerIssue";
 
@@ -33,6 +33,7 @@ export default function IssueDetail() {
     isFetching,
     setPullRequestUrl,
     generateProof,
+    cancelGeneration,
   } = useGenerateProof();
 
   const {
@@ -175,7 +176,7 @@ export default function IssueDetail() {
           
           <IssueDescription issueDetails={issueDetails} />
           
-          <ValidationResults
+          <HorizontalValidationResults
             proof={proof}
             validationResults={validationResults}
             isAllValid={isAllValid}
@@ -185,7 +186,7 @@ export default function IssueDetail() {
         </main>
       </div>
       
-      <GeneratingProofPopup isVisible={isFetching} />
+      <GeneratingProofPopup isVisible={isFetching} onCancel={cancelGeneration} />
     </CornerLayout>
   );
 }

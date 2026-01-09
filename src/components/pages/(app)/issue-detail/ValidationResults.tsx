@@ -1,6 +1,9 @@
+"use client";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import ValidationItem from "./ValidationItem";
+import ValidationResultsPopup from "./ValidationResultsPopup";
 
 interface ValidationResultsProps {
   proof: any;
@@ -22,6 +25,8 @@ export default function ValidationResults({
   isProcessing,
   handleClaim,
 }: ValidationResultsProps) {
+  const [showPopup, setShowPopup] = useState(false);
+
   if (!proof || Object.keys(proof).length === 0) {
     return null;
   }
@@ -35,9 +40,19 @@ export default function ValidationResults({
       </div> */}
 
       <div className="bg-white border border-gray-200 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
-          <span className="font-bold">zkTLS</span> Validation Results
-        </h3>
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-lg font-semibold text-gray-900">
+            <span className="font-bold">zkTLS</span> Validation Results
+          </h3>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setShowPopup(true)}
+            className="border-black text-white hover:bg-gray-200 cursor-pointer"
+          >
+            View Details
+          </Button>
+        </div>
         
         <div className="space-y-2 mb-6">
           <ValidationItem
@@ -76,6 +91,15 @@ export default function ValidationResults({
           </Button>
         )}
       </div>
+
+      <ValidationResultsPopup
+        isVisible={showPopup}
+        onClose={() => setShowPopup(false)}
+        validationResults={validationResults}
+        isAllValid={isAllValid}
+        isProcessing={isProcessing}
+        handleClaim={handleClaim}
+      />
     </div>
   );
 }

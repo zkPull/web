@@ -6,3 +6,6 @@ export { default as IssueDescription } from "./IssueDescription";
 export { default as ValidationResults } from "./ValidationResults";
 export { default as ValidationItem } from "./ValidationItem";
 export { default as GeneratingProofPopup } from "./GeneratingProofPopup";
+export { default as ValidationResultsPopup } from "./ValidationResultsPopup";
+export { default as SupplyChainValidationPopup } from "./SupplyChainValidationPopup";
+export { default as HorizontalValidationResults } from "./HorizontalValidationResults";

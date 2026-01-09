@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { toast } from "sonner";
 import { UseGenerateProofReturn } from "@/utils/types";
 
@@ -6,6 +6,7 @@ export const useGenerateProof = (): UseGenerateProofReturn => {
   const [proof, setProof] = useState<Record<string, string>>({});
   const [pullRequestUrl, setPullRequestUrl] = useState("");
   const [isFetching, setIsFetching] = useState(false);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   const generateProof = async () => {
     if (!pullRequestUrl) {
@@ -15,7 +16,9 @@ export const useGenerateProof = (): UseGenerateProofReturn => {
       return;
     }
 
+    abortControllerRef.current = new AbortController();
     setIsFetching(true);
+    
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_ZK_BACKEND_GENERATE_PROOF}?url=${encodeURIComponent(
@@ -26,6 +29,7 @@ export const useGenerateProof = (): UseGenerateProofReturn => {
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
           },
+          signal: abortControllerRef.current.signal,
         }
       );
 
@@ -34,12 +38,24 @@ export const useGenerateProof = (): UseGenerateProofReturn => {
       toast.success("Success", {
         description: "Proof generated successfully!",
       });
-    } catch (error) {
-      console.error("Error generating proof:", error);
-      toast.error("Error", {
-        description: "Failed to generate proof. Please logout Github, and try to connect Github again.",
-      });
+    } catch (error: any) {
+      if (error.name === "AbortError") {
+        toast.info("Proof generation cancelled");
+      } else {
+        console.error("Error generating proof:", error);
+        toast.error("Error", {
+          description: "Failed to generate proof. Please logout Github, and try to connect Github again.",
+        });
+      }
     } finally {
+      setIsFetching(false);
+      abortControllerRef.current = null;
+    }
+  };
+
+  const cancelGeneration = () => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
       setIsFetching(false);
     }
   };
@@ -50,5 +66,6 @@ export const useGenerateProof = (): UseGenerateProofReturn => {
     isFetching,
     setPullRequestUrl,
     generateProof,
+    cancelGeneration,
   };
 };

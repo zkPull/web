@@ -41,6 +41,7 @@ export interface UseGenerateProofReturn {
   isFetching: boolean;
   setPullRequestUrl: (url: string) => void;
   generateProof: () => Promise<void>;
+  cancelGeneration: () => void;
 }
 
 export interface ValidationResults {
