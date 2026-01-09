@@ -24,7 +24,7 @@ export const useGenerateProof = (): UseGenerateProofReturn => {
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
           },
         }
       );

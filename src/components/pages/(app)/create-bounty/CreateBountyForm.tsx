@@ -49,7 +49,7 @@ export default function CreateBountyForm({
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="repoLink" className="text-gray-900 font-medium">Repository Link</Label>
+        <Label htmlFor="repoLink" className="text-gray-900 font-medium">Github Repository Link</Label>
         <Input
           name="repoLink"
           value={formData.repoLink}

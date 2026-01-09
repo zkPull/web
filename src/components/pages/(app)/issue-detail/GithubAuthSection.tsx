@@ -64,7 +64,7 @@ export default function GithubAuthSection({
         <div className="flex gap-3">
           <Button
             size="lg"
-            className="flex-1 bg-gray-200 text-gray-900 hover:bg-gray-300 border border-gray-300 cursor-pointer"
+            className="flex-1 bg-black text-white hover:bg-gray-800 border border-black cursor-pointer"
             onClick={generateProof}
             disabled={isFetching}
           >
@@ -83,7 +83,7 @@ export default function GithubAuthSection({
             variant="outline"
             onClick={githubLogout}
             disabled={isFetching}
-            className="border-gray-300 text-gray-700 hover:bg-gray-50 cursor-pointer"
+            className="bg-white border-black text-black hover:bg-gray-400 cursor-pointer"
           >
             Logout
           </Button>

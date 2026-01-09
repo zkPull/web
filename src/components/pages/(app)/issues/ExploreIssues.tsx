@@ -22,7 +22,13 @@ export default function ExploreIssues() {
 
   React.useEffect(() => {
     if (code) {
-      localStorage.setItem("code", code);
+      sessionStorage.setItem("code", code);
+      sessionStorage.setItem("code_timestamp", Date.now().toString());
+      window.history.replaceState(
+        {},
+        document.title,
+        window.location.pathname
+      );
     }
   }, [code]);
 
