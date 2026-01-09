@@ -9,3 +9,4 @@ export { default as GeneratingProofPopup } from "./GeneratingProofPopup";
 export { default as ValidationResultsPopup } from "./ValidationResultsPopup";
 export { default as SupplyChainValidationPopup } from "./SupplyChainValidationPopup";
 export { default as HorizontalValidationResults } from "./HorizontalValidationResults";
+export { default as ClaimRewardsPopup } from "./ClaimRewardsPopup";

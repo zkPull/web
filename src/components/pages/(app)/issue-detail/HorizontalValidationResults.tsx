@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import Lottie from "lottie-react";
 import SupplyChainValidationPopup from "./SupplyChainValidationPopup";
+import ClaimRewardsPopup from "./ClaimRewardsPopup";
 import destinationAnimation from "../../../../../public/images/Animation/destination-animation.json";
 
 interface HorizontalValidationResultsProps {
@@ -18,6 +19,7 @@ interface HorizontalValidationResultsProps {
   isAllValid: boolean;
   isProcessing: boolean;
   handleClaim: () => void;
+  rewardAmount?: string;
 }
 
 interface HorizontalValidationStepProps {
@@ -66,8 +68,10 @@ export default function HorizontalValidationResults({
   isAllValid,
   isProcessing,
   handleClaim,
+  rewardAmount = "100",
 }: HorizontalValidationResultsProps) {
   const [showPopup, setShowPopup] = useState(false);
+  const [showClaimPopup, setShowClaimPopup] = useState(false);
 
   if (!proof || Object.keys(proof).length === 0) {
     return null;
@@ -134,7 +138,7 @@ export default function HorizontalValidationResults({
           <Button
             size="default"
             className="w-full bg-green-600 hover:bg-green-700 text-white cursor-pointer"
-            onClick={handleClaim}
+            onClick={() => setShowClaimPopup(true)}
             disabled={isProcessing}
           >
             {isProcessing ? (
@@ -156,6 +160,14 @@ export default function HorizontalValidationResults({
         isAllValid={isAllValid}
         isProcessing={isProcessing}
         handleClaim={handleClaim}
+      />
+
+      <ClaimRewardsPopup
+        isVisible={showClaimPopup}
+        onClose={() => setShowClaimPopup(false)}
+        onConfirmClaim={handleClaim}
+        rewardAmount={rewardAmount}
+        isProcessing={isProcessing}
       />
     </div>
   );
