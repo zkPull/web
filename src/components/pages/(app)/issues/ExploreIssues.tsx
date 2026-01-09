@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,14 @@ import { Issue } from "@/utils/types";
 import CornerLayout from "./CornerLayout";
 import WalletConnectSection from "./WalletConnectSection";
 import IssuesList from "./IssuesList";
+import SearchFilterSection from "./SearchFilterSection";
+import { formatTokenAmount } from "@/utils/format";
+
+interface FilterOptions {
+  difficulty: string;
+  bountyRange: string;
+  status: string;
+}
 
 export default function ExploreIssues() {
   const { allIssue = [], isFetchingData } = useGetAllIssue() as {
@@ -19,6 +27,57 @@ export default function ExploreIssues() {
   const { address } = useWallet();
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filters, setFilters] = useState<FilterOptions>({
+    difficulty: "",
+    bountyRange: "",
+    status: "",
+  });
+
+  const filteredIssues = useMemo(() => {
+    let filtered = allIssue;
+
+    if (searchQuery) {
+      filtered = filtered.filter(issue => 
+        issue.projectName.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    if (filters.bountyRange) {
+      filtered = filtered.filter(issue => {
+        const bountyAmount = parseFloat(formatTokenAmount(issue.bountyAmount?.toString() || "0"));
+        switch (filters.bountyRange) {
+          case "0-50":
+            return bountyAmount >= 0 && bountyAmount <= 50;
+          case "50-100":
+            return bountyAmount > 50 && bountyAmount <= 100;
+          case "100-500":
+            return bountyAmount > 100 && bountyAmount <= 500;
+          case "500+":
+            return bountyAmount > 500;
+          default:
+            return true;
+        }
+      });
+    }
+
+    if (filters.status) {
+      filtered = filtered.filter(issue => {
+        switch (filters.status) {
+          case "open":
+            return new Date(Number(issue.deadline) * 1000) > new Date();
+          case "in-progress":
+            return true; 
+          case "completed":
+            return new Date(Number(issue.deadline) * 1000) <= new Date();
+          default:
+            return true;
+        }
+      });
+    }
+
+    return filtered;
+  }, [allIssue, searchQuery, filters]);
 
   React.useEffect(() => {
     if (code) {
@@ -61,8 +120,16 @@ export default function ExploreIssues() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 max-w-6xl mx-auto">
-            <IssuesList allIssue={allIssue} isFetchingData={isFetchingData} />
+          <div className="max-w-6xl mx-auto">
+            <SearchFilterSection
+              onSearch={setSearchQuery}
+              onFilterChange={setFilters}
+              totalIssues={filteredIssues.length}
+            />
+
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+              <IssuesList allIssue={filteredIssues} isFetchingData={isFetchingData} />
+            </div>
           </div>
         </main>
       </div>
