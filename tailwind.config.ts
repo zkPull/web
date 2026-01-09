@@ -58,7 +58,7 @@ const config: Config = {
     			sm: 'calc(var(--radius) - 4px)'
     		},
     		animation: {
-    			shine: 'shine var(--duration) infinite linear'
+    			shine: 'shine var(--duration) infinite linear',
     		},
     		keyframes: {
     			shine: {
@@ -97,7 +97,6 @@ const config: Config = {
 					}),
 				},
 				{
-					// Gunakan utilitas warna dari theme Tailwind CSS
 					values: theme("backgroundColor"),
 					type: "color",
 				}

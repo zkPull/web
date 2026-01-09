@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { HiArrowRight } from "react-icons/hi2";
 import { Highlighter } from "@/components/ui/highlighter";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
 
 export default function Hero() {
   return (
@@ -71,14 +72,17 @@ export default function Hero() {
           <div className="max-w-4xl">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
               Start your open source contribution and earn rewards with{" "}
-                <Highlighter action="underline" color="#FF9800">zkTLS</Highlighter> validation
+              <Highlighter action="underline" color="#FF9800">
+                zkTLS
+              </Highlighter>{" "}
+              validation
             </h1>
 
             <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-8 max-w-2xl">
               The zkPull platform empowers open source contributors to earn
               rewards through validated Pull Requests and bug fixes. Powered by
-              zero-knowledge TLS technology for secure, private, and fair
-              validation on the Mantle blockchain.
+              Zero-Knowledge Transport Layer Security technology for secure,
+              private, and fair validation on the Mantle blockchain.
             </p>
 
             <div className="flex items-center justify-between">
@@ -94,20 +98,17 @@ export default function Hero() {
                   className="opacity-80"
                 />
               </div>
-              <Button 
-                asChild
-                className="cursor-pointer bg-black text-white hover:bg-gray-800"
-              >
+              <ShimmerButton>
                 <Link href="/issues" className="flex items-center gap-2">
                   Start Your Contribution
                   <HiArrowRight className="w-4 h-4" />
                 </Link>
-              </Button>
+              </ShimmerButton>
             </div>
           </div>
         </div>
       </div>
-      
+
       <div className="absolute bottom-[-5] left-[-4] z-20">
         <div className="w-6 h-6">
           <div className="absolute bottom-0 left-1 w-6 h-2 border-l-2 border-b-2 border-black"></div>
