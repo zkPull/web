@@ -76,7 +76,7 @@ export default function ValidationResults({
         {isAllValid && (
           <Button
             size="lg"
-            className="w-full bg-green-600 hover:bg-green-700 text-white cursor-pointer"
+            className="w-full bg-black hover:bg-gray-800 text-white cursor-pointer"
             onClick={handleClaim}
             disabled={isProcessing}
           >

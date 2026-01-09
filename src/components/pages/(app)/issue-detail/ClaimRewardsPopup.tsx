@@ -24,13 +24,15 @@ export default function ClaimRewardsPopup({
   return (
     <AnimatePresence>
       {isVisible && (
-        <>
+        <div>
           <motion.div
-            className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
+            className="fixed top-0 left-0 right-0 bottom-0 z-[9999] flex items-center justify-center p-4"
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
+            onClick={onClose}
           >
             <motion.div
               className="bg-white rounded-lg max-w-md w-full border border-gray-200 relative"
@@ -38,6 +40,7 @@ export default function ClaimRewardsPopup({
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={onClose}
@@ -75,7 +78,7 @@ export default function ClaimRewardsPopup({
                     <div className="text-left">
                       <p className="text-sm text-gray-600">Reward Amount</p>
                       <p className="text-2xl font-bold text-gray-900">
-                        {rewardAmount} mUSD
+                        {rewardAmount} <span className="font-light">mUSD</span>
                       </p>
                     </div>
                   </div>
@@ -112,7 +115,7 @@ export default function ClaimRewardsPopup({
                 <div className="flex gap-3">
                   <Button
                     size="lg"
-                    className="flex-1 bg-green-600 hover:bg-green-700 text-white cursor-pointer"
+                    className="flex-1 bg-black hover:bg-gray-800 text-white cursor-pointer"
                     onClick={onConfirmClaim}
                     disabled={isProcessing}
                   >
@@ -123,7 +126,7 @@ export default function ClaimRewardsPopup({
                     variant="outline"
                     onClick={onClose}
                     disabled={isProcessing}
-                    className="bg-white border-black text-black hover:bg-gray-50 cursor-pointer"
+                    className="bg-white border-black text-black hover:text-gray-500 hover:bg-gray-50 cursor-pointer"
                   >
                     Cancel
                   </Button>
@@ -131,7 +134,7 @@ export default function ClaimRewardsPopup({
               </div>
             </motion.div>
           </motion.div>
-        </>
+        </div>
       )}
     </AnimatePresence>
   );

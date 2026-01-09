@@ -94,11 +94,13 @@ export default function SupplyChainValidationPopup({
       {isVisible && (
         <>
           <motion.div
-            className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
+            className="fixed top-0 left-0 right-0 bottom-0 z-[9999] flex items-center justify-center p-4"
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
+            onClick={onClose}
           >
             <motion.div
               className="bg-white rounded-lg max-w-4xl w-full border border-gray-200 max-h-[90vh] overflow-y-auto"
@@ -106,6 +108,7 @@ export default function SupplyChainValidationPopup({
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center p-6 border-b border-gray-100">
                 <div>
@@ -155,7 +158,7 @@ export default function SupplyChainValidationPopup({
                   {isAllValid && (
                     <Button
                       size="lg"
-                      className="flex-1 bg-green-600 hover:bg-green-700 text-white cursor-pointer"
+                      className="flex-1 bg-black hover:bg-gray-800 text-white cursor-pointer"
                       onClick={handleClaim}
                       disabled={isProcessing}
                     >

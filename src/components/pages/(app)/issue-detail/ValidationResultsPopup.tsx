@@ -133,7 +133,7 @@ export default function ValidationResultsPopup({
                   {isAllValid && (
                     <Button
                       size="lg"
-                      className="flex-1 bg-green-600 hover:bg-green-700 text-white cursor-pointer"
+                      className="flex-1 bg-black hover:bg-gray-800 text-white cursor-pointer"
                       onClick={handleClaim}
                       disabled={isProcessing}
                     >

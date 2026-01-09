@@ -137,7 +137,7 @@ export default function HorizontalValidationResults({
         {isAllValid && (
           <Button
             size="default"
-            className="w-full bg-green-600 hover:bg-green-700 text-white cursor-pointer"
+            className="w-full bg-black hover:bg-gray-800 text-white cursor-pointer"
             onClick={() => setShowClaimPopup(true)}
             disabled={isProcessing}
           >
