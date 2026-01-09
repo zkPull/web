@@ -4,6 +4,7 @@ import Lottie from "lottie-react";
 import Image from "next/image";
 import { IoMdClose } from "react-icons/io";
 import { Button } from "@/components/ui/button";
+import { formatTokenAmount } from "@/utils/format";
 import deliveryAnimation from "../../../../../public/images/Animation/delivery-animation.json";
 
 interface ClaimRewardsPopupProps {
@@ -78,7 +79,7 @@ export default function ClaimRewardsPopup({
                     <div className="text-left">
                       <p className="text-sm text-gray-600">Reward Amount</p>
                       <p className="text-2xl font-bold text-gray-900">
-                        {rewardAmount} <span className="font-light">mUSD</span>
+                        {formatTokenAmount(rewardAmount)} <span className="font-light">mUSD</span>
                       </p>
                     </div>
                   </div>

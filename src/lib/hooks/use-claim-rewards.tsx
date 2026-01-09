@@ -94,22 +94,6 @@ export const useClaimRewards = (prLink: string) => {
     }
   }, [isApprovalSuccess, claimRewards, writeClaim]);
 
-  React.useEffect(() => {
-    if (claimHash) {
-      toast.success("Claim Token success!", {
-        description: (
-          <a
-            href={`${SEPOLIA_EXPLORER}${claimHash}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 underline"
-          >
-            View Transaction on Sepolia Explorer
-          </a>
-        ),
-      });
-    }
-  }, [claimHash]);
 
   React.useEffect(() => {
     if (approvalHash) {
@@ -136,5 +120,6 @@ export const useClaimRewards = (prLink: string) => {
     isApprovalPending,
     isApprovalConfirming,
     usedPRLinksData,
+    claimHash,
   };
 };

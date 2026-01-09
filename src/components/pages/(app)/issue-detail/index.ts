@@ -10,3 +10,4 @@ export { default as ValidationResultsPopup } from "./ValidationResultsPopup";
 export { default as SupplyChainValidationPopup } from "./SupplyChainValidationPopup";
 export { default as HorizontalValidationResults } from "./HorizontalValidationResults";
 export { default as ClaimRewardsPopup } from "./ClaimRewardsPopup";
+export { default as ClaimSuccessPopup } from "./ClaimSuccessPopup";

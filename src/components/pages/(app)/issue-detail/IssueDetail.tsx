@@ -58,6 +58,7 @@ export default function IssueDetail() {
     isApprovalConfirming,
     usedPRLinksData,
     isClaimSuccess,
+    claimHash,
   } = useClaimRewards(pullRequestUrl);
 
   const isAllValid =
@@ -88,12 +89,6 @@ export default function IssueDetail() {
       });
     }
   };
-
-  React.useEffect(() => {
-    if (isClaimSuccess) {
-      toast.success("Claim mUSD Token success!");
-    }
-  }, [isClaimSuccess]);
 
   if (isLoading) {
     return (
@@ -182,6 +177,9 @@ export default function IssueDetail() {
             isAllValid={isAllValid}
             isProcessing={isProcessing}
             handleClaim={handleClaim}
+            rewardAmount={issueDetails.bountyAmount?.toString() || "100"}
+            isClaimSuccess={isClaimSuccess}
+            claimHash={claimHash}
           />
         </main>
       </div>

@@ -1,11 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import Lottie from "lottie-react";
 import SupplyChainValidationPopup from "./SupplyChainValidationPopup";
 import ClaimRewardsPopup from "./ClaimRewardsPopup";
+import ClaimSuccessPopup from "./ClaimSuccessPopup";
 import destinationAnimation from "../../../../../public/images/Animation/destination-animation.json";
 
 interface HorizontalValidationResultsProps {
@@ -18,8 +19,10 @@ interface HorizontalValidationResultsProps {
   };
   isAllValid: boolean;
   isProcessing: boolean;
-  handleClaim: () => void;
+  handleClaim: () => void | Promise<void>;
   rewardAmount?: string;
+  isClaimSuccess?: boolean;
+  claimHash?: string;
 }
 
 interface HorizontalValidationStepProps {
@@ -69,9 +72,23 @@ export default function HorizontalValidationResults({
   isProcessing,
   handleClaim,
   rewardAmount = "100",
+  isClaimSuccess,
+  claimHash,
 }: HorizontalValidationResultsProps) {
   const [showPopup, setShowPopup] = useState(false);
   const [showClaimPopup, setShowClaimPopup] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
+  const handleClaimReward = () => {
+    setShowClaimPopup(false);
+    handleClaim();
+  };
+
+  useEffect(() => {
+    if (isClaimSuccess) {
+      setShowSuccessPopup(true);
+    }
+  }, [isClaimSuccess]);
 
   if (!proof || Object.keys(proof).length === 0) {
     return null;
@@ -165,9 +182,16 @@ export default function HorizontalValidationResults({
       <ClaimRewardsPopup
         isVisible={showClaimPopup}
         onClose={() => setShowClaimPopup(false)}
-        onConfirmClaim={handleClaim}
+        onConfirmClaim={handleClaimReward}
         rewardAmount={rewardAmount}
         isProcessing={isProcessing}
+      />
+
+      <ClaimSuccessPopup
+        isVisible={showSuccessPopup}
+        onClose={() => setShowSuccessPopup(false)}
+        rewardAmount={rewardAmount}
+        claimHash={claimHash}
       />
     </div>
   );
