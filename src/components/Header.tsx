@@ -172,6 +172,46 @@ export default function Header() {
               </Link>
             </li>
             <li>
+              <Link
+                href="/faucet"
+                className={`relative rounded-lg px-4 py-2 transition-all duration-200 cursor-pointer ${
+                  pathname === "/faucet"
+                    ? "bg-[#ffefc5] text-black font-light border border-[#ffefc5]"
+                    : "bg-white border border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                <span
+                  className={`absolute top-0 left-0 w-3 h-3 rounded-tl-md ${
+                    pathname === "/faucet"
+                      ? "border-white"
+                      : "border-gray-400"
+                  }`}
+                ></span>
+                <span
+                  className={`absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 rounded-tr-md ${
+                    pathname === "/faucet"
+                      ? "border-white"
+                      : "border-gray-400"
+                  }`}
+                ></span>
+                <span
+                  className={`absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 rounded-bl-md ${
+                    pathname === "/faucet"
+                      ? "border-white"
+                      : "border-gray-400"
+                  }`}
+                ></span>
+                <span
+                  className={`absolute bottom-0 right-0 w-3 h-3 rounded-br-md ${
+                    pathname === "/faucet"
+                      ? "border-white"
+                      : "border-gray-400"
+                  }`}
+                ></span>
+                Faucet
+              </Link>
+            </li>
+            <li>
               <WalletConnect />
             </li>
           </ul>
@@ -195,6 +235,9 @@ export default function Header() {
               </li>
               <li>
                 <Link href="/profile">Profile</Link>
+              </li>
+              <li>
+                <Link href="/faucet">Faucet</Link>
               </li>
             </ul>
             <X

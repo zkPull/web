@@ -72,8 +72,3 @@ export interface swapTokenParams {
   toToken : string,
   amount : string
 }
-
-// export interface lazyTokenBalanceParams {
-//   balance : bigint,
-//   address : string
-// }
