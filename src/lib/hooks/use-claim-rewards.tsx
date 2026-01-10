@@ -13,7 +13,7 @@ import { toast } from "sonner";
 import React from "react";
 import { claimRewardParams } from "@/utils/types";
 
-const SEPOLIA_EXPLORER = "https://sepolia.etherscan.io/tx/";
+const MANTLE_SEPOLIA_EXPLORER = "https://sepolia.mantlescan.xyz/tx/";
 
 export const useClaimRewards = (prLink: string) => {
   const [claimRewards, setClaimRewards] =
@@ -100,12 +100,12 @@ export const useClaimRewards = (prLink: string) => {
       toast.success("Token Approval Initiated", {
         description: (
           <a
-            href={`${SEPOLIA_EXPLORER}${approvalHash}`}
+            href={`${MANTLE_SEPOLIA_EXPLORER}${approvalHash}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 underline"
           >
-            View Transaction on Sepolia Explorer
+            View Transaction on Mantle Sepolia Explorer
           </a>
         ),
       });

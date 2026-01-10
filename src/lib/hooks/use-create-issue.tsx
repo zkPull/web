@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 
-const SEPOLIA_EXPLORER = "https://sepolia.etherscan.io/tx/";
+const MANTLE_SEPOLIA_EXPLORER = "https://sepolia.mantlescan.xyz/tx/";
 
 export const useCreateIssue = () => {
   const [issueParams, setIssueParams] = useState<CreateIssueParams | null>(null);
@@ -47,12 +47,12 @@ export const useCreateIssue = () => {
       toast.success("Token Approval Initiated", {
         description: (
           <a
-            href={`${SEPOLIA_EXPLORER}${approvalHash}`}
+            href={`${MANTLE_SEPOLIA_EXPLORER}${approvalHash}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 underline"
           >
-            View Transaction on Sepolia Explorer
+            View Transaction on Mantle Sepolia Explorer
           </a>
         ),
       });
@@ -64,12 +64,12 @@ export const useCreateIssue = () => {
       toast.success("Issue Creation Initiated", {
         description: (
           <a
-            href={`${SEPOLIA_EXPLORER}${createIssueHash}`}
+            href={`${MANTLE_SEPOLIA_EXPLORER}${createIssueHash}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 underline"
           >
-            View Transaction on Sepolia Explorer
+            View Transaction on Mantle Sepolia Explorer
           </a>
         ),
       });

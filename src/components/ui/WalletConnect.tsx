@@ -73,10 +73,21 @@ export default function WalletConnect() {
                                 <div className='flex gap-2'>
                                     <Button onClick={openAccountModal} type="button" className="flex items-center gap-2">
                                         <div className="flex items-center gap-2">
-                                            {account.displayName}
-                                            {account.displayBalance
-                                                ? ` (${account.displayBalance})`
-                                                : ''}
+                                            <span>{account.displayName}</span>
+                                            {account.displayBalance && (
+                                                <>
+                                                    <span>(</span>
+                                                    <span>{account.displayBalance.replace(' MNT', '')}</span>
+                                                    <Image
+                                                        src="/images/Logo/mantle-usd-logo.webp"
+                                                        alt="Mantle"
+                                                        width={16}
+                                                        height={16}
+                                                        className="object-contain"
+                                                    />
+                                                    <span>MNT)</span>
+                                                </>
+                                            )}
                                         </div>
                                     </Button>
                                 </div>

@@ -106,12 +106,12 @@ export default function ClaimSuccessPopup({
                   transition={{ delay: 0.7, duration: 0.3 }}
                 >
                   <a
-                    href={`https://sepolia.etherscan.io/tx/${claimHash}`}
+                    href={`https://sepolia.mantlescan.xyz/tx/${claimHash}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:text-blue-800 text-sm underline cursor-pointer"
                   >
-                    View Transaction on Sepolia Explorer
+                    View Transaction on Mantle Sepolia Explorer
                   </a>
                 </motion.div>
               )}

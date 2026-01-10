@@ -1,6 +1,6 @@
 'use client'
 
-import { sepolia } from "wagmi/chains";
+import { mantleSepoliaTestnet } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 import {
@@ -26,7 +26,7 @@ const config = getDefaultConfig({
             wallets: [rabbyWallet],
         },
     ],
-    chains: [sepolia],
+    chains: [mantleSepoliaTestnet],
     ssr: true,
 });
 
