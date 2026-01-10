@@ -11,6 +11,7 @@ import CornerLayout from "./CornerLayout";
 import WalletConnectSection from "./WalletConnectSection";
 import IssuesList from "./IssuesList";
 import SearchFilterSection from "./SearchFilterSection";
+import Pagination from "./Pagination";
 import { formatTokenAmount } from "@/utils/format";
 
 interface FilterOptions {
@@ -33,9 +34,15 @@ export default function ExploreIssues() {
     bountyRange: "",
     status: "",
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(6);
 
-  const filteredIssues = useMemo(() => {
+  const filteredAndSortedIssues = useMemo(() => {
     let filtered = allIssue;
+
+    filtered = filtered.filter(issue => {
+      return new Date(Number(issue.deadline) * 1000) > new Date();
+    });
 
     if (searchQuery) {
       filtered = filtered.filter(issue => 
@@ -76,8 +83,34 @@ export default function ExploreIssues() {
       });
     }
 
+    filtered.sort((a, b) => {
+      const bountyA = Number(a.bountyAmount);
+      const bountyB = Number(b.bountyAmount);
+      const deadlineA = Number(a.deadline);
+      const deadlineB = Number(b.deadline);
+      
+      if (bountyA !== bountyB) {
+        return bountyB - bountyA;
+      }
+      
+      return deadlineB - deadlineA;
+    });
+
     return filtered;
   }, [allIssue, searchQuery, filters]);
+
+  const paginatedIssues = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredAndSortedIssues.slice(startIndex, endIndex);
+  }, [filteredAndSortedIssues, currentPage, itemsPerPage]);
+
+  const totalPages = Math.ceil(filteredAndSortedIssues.length / itemsPerPage);
+
+  const highestRewardAmount = useMemo(() => {
+    if (filteredAndSortedIssues.length === 0) return BigInt(0);
+    return filteredAndSortedIssues[0]?.bountyAmount || BigInt(0);
+  }, [filteredAndSortedIssues]);
 
   React.useEffect(() => {
     if (code) {
@@ -124,12 +157,22 @@ export default function ExploreIssues() {
             <SearchFilterSection
               onSearch={setSearchQuery}
               onFilterChange={setFilters}
-              totalIssues={filteredIssues.length}
+              totalIssues={filteredAndSortedIssues.length}
             />
 
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-              <IssuesList allIssue={filteredIssues} isFetchingData={isFetchingData} />
+              <IssuesList 
+                allIssue={paginatedIssues} 
+                isFetchingData={isFetchingData}
+                highestRewardAmount={highestRewardAmount}
+              />
             </div>
+
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
           </div>
         </main>
       </div>

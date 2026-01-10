@@ -5,9 +5,10 @@ import IssueCard from "./IssueCard";
 interface IssuesListProps {
   allIssue: Issue[];
   isFetchingData: boolean;
+  highestRewardAmount?: bigint;
 }
 
-export default function IssuesList({ allIssue, isFetchingData }: IssuesListProps) {
+export default function IssuesList({ allIssue, isFetchingData, highestRewardAmount }: IssuesListProps) {
   if (isFetchingData) {
     return (
       <div className="col-span-2 flex justify-center items-center min-h-[300px] space-x-3">
@@ -28,9 +29,17 @@ export default function IssuesList({ allIssue, isFetchingData }: IssuesListProps
 
   return (
     <>
-      {allIssue.map((issue, index) => (
-        <IssueCard key={issue.id} issue={issue} index={index} />
-      ))}
+      {allIssue.map((issue, index) => {
+        const isHighestReward = Boolean(highestRewardAmount && issue.bountyAmount === highestRewardAmount);
+        return (
+          <IssueCard 
+            key={issue.id} 
+            issue={issue} 
+            index={index} 
+            isHighestReward={isHighestReward}
+          />
+        );
+      })}
     </>
   );
 }
