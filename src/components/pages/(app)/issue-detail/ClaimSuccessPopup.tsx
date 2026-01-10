@@ -11,6 +11,7 @@ interface ClaimSuccessPopupProps {
   isVisible: boolean;
   onClose: () => void;
   rewardAmount: string;
+  maxClaims: number;
   claimHash?: string;
 }
 
@@ -18,13 +19,17 @@ export default function ClaimSuccessPopup({
   isVisible,
   onClose,
   rewardAmount,
+  maxClaims,
   claimHash,
 }: ClaimSuccessPopupProps) {
+  const rewardPerClaim = Number(formatTokenAmount(rewardAmount)) / Number(maxClaims);
   return (
     <AnimatePresence>
       {isVisible && (
+        <div>
         <motion.div
-          className="fixed inset-0 bg-black bg-opacity-50 z-[9999] flex items-center justify-center p-4"
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -93,7 +98,7 @@ export default function ClaimSuccessPopup({
                     className="mr-2"
                   />
                   <p className="text-gray-900 font-medium">
-                    {formatTokenAmount(rewardAmount)} mUSD claimed successfully
+                    {rewardPerClaim.toFixed(2)} mUSD claimed successfully
                   </p>
                 </div>
               </motion.div>
@@ -132,6 +137,7 @@ export default function ClaimSuccessPopup({
             </div>
           </motion.div>
         </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );

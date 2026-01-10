@@ -28,6 +28,7 @@ export interface IssueDetails {
     bountyAmount: number;
     repoLink: string;
     description: string;
+    maxClaims: number;
 }
 
 export interface UseGithubAuthReturn {

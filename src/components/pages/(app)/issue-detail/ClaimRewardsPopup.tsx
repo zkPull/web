@@ -12,6 +12,7 @@ interface ClaimRewardsPopupProps {
   onClose: () => void;
   onConfirmClaim: () => void;
   rewardAmount: string;
+  maxClaims: number;
   isProcessing: boolean;
 }
 
@@ -20,8 +21,10 @@ export default function ClaimRewardsPopup({
   onClose,
   onConfirmClaim,
   rewardAmount,
+  maxClaims,
   isProcessing,
 }: ClaimRewardsPopupProps) {
+  const rewardPerClaim = Number(formatTokenAmount(rewardAmount)) / Number(maxClaims);
   return (
     <AnimatePresence>
       {isVisible && (
@@ -77,9 +80,9 @@ export default function ClaimRewardsPopup({
                       className="mr-3"
                     />
                     <div className="text-left">
-                      <p className="text-sm text-gray-600">Reward Amount</p>
+                      <p className="text-sm text-gray-600">Reward Per Claim</p>
                       <p className="text-2xl font-bold text-gray-900">
-                        {formatTokenAmount(rewardAmount)} <span className="font-light">mUSD</span>
+                        {rewardPerClaim.toFixed(2)} <span className="font-light">mUSD</span>
                       </p>
                     </div>
                   </div>

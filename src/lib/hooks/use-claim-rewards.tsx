@@ -80,6 +80,7 @@ export const useClaimRewards = (prLink: string) => {
 
   React.useEffect(() => {
     if (isApprovalSuccess && claimRewards) {
+      const accessToken = sessionStorage.getItem("accessToken") || "";
       writeClaim({
         address: ISSUE_ADDRESS,
         abi: ISSUE_ABI,
@@ -88,6 +89,7 @@ export const useClaimRewards = (prLink: string) => {
           claimRewards.issueId,
           claimRewards.prLink,
           claimRewards.isMerged,
+          accessToken,
         ],
       });
       setClaimRewards(null);

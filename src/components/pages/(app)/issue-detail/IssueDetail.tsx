@@ -178,6 +178,7 @@ export default function IssueDetail() {
             isProcessing={isProcessing}
             handleClaim={handleClaim}
             rewardAmount={issueDetails.bountyAmount?.toString() || "100"}
+            maxClaims={issueDetails.maxClaims}
             isClaimSuccess={isClaimSuccess}
             claimHash={claimHash}
           />

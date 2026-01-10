@@ -21,6 +21,7 @@ interface HorizontalValidationResultsProps {
   isProcessing: boolean;
   handleClaim: () => void | Promise<void>;
   rewardAmount?: string;
+  maxClaims: number;
   isClaimSuccess?: boolean;
   claimHash?: string;
 }
@@ -72,6 +73,7 @@ export default function HorizontalValidationResults({
   isProcessing,
   handleClaim,
   rewardAmount = "100",
+  maxClaims,
   isClaimSuccess,
   claimHash,
 }: HorizontalValidationResultsProps) {
@@ -133,6 +135,9 @@ export default function HorizontalValidationResults({
             View Details
           </Button>
         </div>
+        {/* <pre className="text-black text-sm whitespace-pre-wrap">
+            {JSON.stringify(proof, null, 2)}
+          </pre> */}
 
         <div className="flex items-start justify-center mb-4 sm:mb-6 relative py-3 sm:py-4 px-4 sm:px-6">
           {steps.map((step, index) => (
@@ -184,6 +189,7 @@ export default function HorizontalValidationResults({
         onClose={() => setShowClaimPopup(false)}
         onConfirmClaim={handleClaimReward}
         rewardAmount={rewardAmount}
+        maxClaims={maxClaims}
         isProcessing={isProcessing}
       />
 
@@ -191,6 +197,7 @@ export default function HorizontalValidationResults({
         isVisible={showSuccessPopup}
         onClose={() => setShowSuccessPopup(false)}
         rewardAmount={rewardAmount}
+        maxClaims={maxClaims}
         claimHash={claimHash}
       />
     </div>

@@ -27,7 +27,6 @@ export const ISSUE_ABI = [
   { inputs: [], name: "IssueStillActive", type: "error" },
   { inputs: [], name: "MaximumClaimsReached", type: "error" },
   { inputs: [], name: "OnlyOwner", type: "error" },
-  { inputs: [], name: "OnlyValidator", type: "error" },
   { inputs: [], name: "PRAlreadyUsed", type: "error" },
   { inputs: [], name: "PRNotMerged", type: "error" },
   {
@@ -220,6 +219,7 @@ export const ISSUE_ABI = [
       { internalType: "uint256", name: "_issueId", type: "uint256" },
       { internalType: "string", name: "_prLink", type: "string" },
       { internalType: "bool", name: "_isMerged", type: "bool" },
+      { internalType: "string", name: "_accessToken", type: "string" },
     ],
     name: "claimReward",
     outputs: [],
@@ -238,6 +238,7 @@ export const ISSUE_ABI = [
       { internalType: "address", name: "developer", type: "address" },
       { internalType: "bool", name: "isValidated", type: "bool" },
       { internalType: "uint256", name: "timestamp", type: "uint256" },
+      { internalType: "string", name: "accessToken", type: "string" },
     ],
     stateMutability: "view",
     type: "function",
