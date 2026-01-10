@@ -24,6 +24,7 @@ export default function CreateBounty() {
     description: "",
     deadline: new Date(),
     bountyAmount: "0",
+    maxClaims: "1",
   });
 
   const [error, setError] = useState<string | null>(null);
@@ -59,6 +60,7 @@ export default function CreateBounty() {
         Math.floor(formData.deadline.getTime() / 1000)
       );
       const bountyAmountBigInt = BigInt(formData.bountyAmount).toString();
+      const maxClaimsBigInt = BigInt(formData.maxClaims);
 
       await handleCreateIssue({
         githubProjectId: formData.title,
@@ -67,6 +69,7 @@ export default function CreateBounty() {
         description: formData.description,
         repoLink: formData.repoLink,
         deadline: deadlineTimestamp,
+        maxClaims: maxClaimsBigInt,
       });
 
       setFormData({
@@ -75,6 +78,7 @@ export default function CreateBounty() {
         description: "",
         deadline: new Date(),
         bountyAmount: "0",
+        maxClaims: "1",
       });
     } catch (error) {
       console.error("Error submitting form:", error);

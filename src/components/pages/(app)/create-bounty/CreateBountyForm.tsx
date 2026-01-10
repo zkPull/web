@@ -3,7 +3,8 @@ import { DatePicker } from "@/components/ui/date-picker";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Loader2 } from "lucide-react";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { Loader2, Info } from "lucide-react";
 import Image from "next/image";
 
 interface FormData {
@@ -12,6 +13,7 @@ interface FormData {
   description: string;
   deadline: Date;
   bountyAmount: string;
+  maxClaims: string;
 }
 
 interface CreateBountyFormProps {
@@ -96,9 +98,51 @@ export default function CreateBountyForm({
 
       <div className="flex flex-col space-y-2">
         <Label htmlFor="deadline" className="text-gray-900 font-medium">Deadline</Label>
-        <DatePicker 
-          date={formData.deadline} 
+        <DatePicker
+          date={formData.deadline}
           onSelect={onDateChange}
+        />
+      </div>
+
+      <div className="space-y-2">
+        <div className="flex items-center space-x-2">
+          <Label htmlFor="maxClaims" className="text-gray-900 font-medium">Maximum Claims</Label>
+          <Popover>
+            <PopoverTrigger asChild>
+              <button type="button" className="cursor-pointer">
+                <Info className="w-4 h-4 text-gray-500 hover:text-gray-700" />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="bg-white border border-gray-200 text-gray-900">
+              <div className="space-y-3">
+                <p className="text-sm font-medium">Maximum Claims limits how many developers can claim rewards for 1 issue.</p>
+                <div className="text-sm space-y-1">
+                  <p className="font-medium">Reward per claim = Total Bounty / Max Claims</p>
+                </div>
+                <div className="text-sm space-y-1">
+                  <p className="font-medium">Example:</p>
+                  <p>Bounty: 300 mUSD</p>
+                  <p>Max Claims: 3</p>
+                  <p>Reward per claim: 100 mUSD</p>
+                </div>
+                <div className="text-sm space-y-1">
+                  <p className="font-medium">If only 2 developers claim:</p>
+                  <p>Paid: 200 mUSD (2 × 100)</p>
+                  <p>Remaining: 100 mUSD (can be withdrawn by owner)</p>
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
+        </div>
+        <Input
+          name="maxClaims"
+          type="number"
+          value={formData.maxClaims}
+          onChange={onInputChange}
+          required
+          placeholder="1"
+          min="1"
+          className="border-gray-300 bg-white text-gray-900"
         />
       </div>
 

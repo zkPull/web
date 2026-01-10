@@ -15,7 +15,7 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID: z.string().min(1),
     NEXT_PUBLIC_ISSUE_ADDRESS: z.string().min(1),
-    NEXT_PUBLIC_LAZYTOKEN_ADDRESS: z.string().min(1),
+    NEXT_PUBLIC_MANTLEUSD_ADDRESS: z.string().min(1),
   },
   /*
    * Due to how Next.js bundles environment variables on Edge and Client,
@@ -27,6 +27,6 @@ export const env = createEnv({
     NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID:
       process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
     NEXT_PUBLIC_ISSUE_ADDRESS: process.env.NEXT_PUBLIC_ISSUE_ADDRESS,
-    NEXT_PUBLIC_LAZYTOKEN_ADDRESS: process.env.NEXT_PUBLIC_LAZYTOKEN_ADDRESS,
+    NEXT_PUBLIC_MANTLEUSD_ADDRESS: process.env.NEXT_PUBLIC_MANTLEUSD_ADDRESS,
   },
 });

@@ -2,33 +2,152 @@ import { env } from "@/env";
 
 // CA
 export const ISSUE_ADDRESS = env.NEXT_PUBLIC_ISSUE_ADDRESS as `0x${string}`;
-export const LAZYTOKEN_ADDRESS =
-  env.NEXT_PUBLIC_LAZYTOKEN_ADDRESS as `0x${string}`;
+export const MANTLE_USD_ADDRESS =
+  env.NEXT_PUBLIC_MANTLEUSD_ADDRESS as `0x${string}`;
 
 // ABI
 export const ISSUE_ABI = [
   {
-    inputs: [{ internalType: "address", name: "_lazyToken", type: "address" }],
+    inputs: [
+      { internalType: "address", name: "_validator", type: "address" },
+      { internalType: "address", name: "_bountyToken", type: "address" },
+      { internalType: "address", name: "_avsContract", type: "address" },
+    ],
     stateMutability: "nonpayable",
     type: "constructor",
+  },
+  { inputs: [], name: "ClaimAlreadyValidated", type: "error" },
+  { inputs: [], name: "DeadlinePassed", type: "error" },
+  { inputs: [], name: "InvalidBountyAmount", type: "error" },
+  { inputs: [], name: "InvalidClaimIndex", type: "error" },
+  { inputs: [], name: "InvalidDeadline", type: "error" },
+  { inputs: [], name: "InvalidIssueId", type: "error" },
+  { inputs: [], name: "InvalidMaxClaims", type: "error" },
+  { inputs: [], name: "IssueClosed", type: "error" },
+  { inputs: [], name: "IssueStillActive", type: "error" },
+  { inputs: [], name: "MaximumClaimsReached", type: "error" },
+  { inputs: [], name: "OnlyOwner", type: "error" },
+  { inputs: [], name: "OnlyValidator", type: "error" },
+  { inputs: [], name: "PRAlreadyUsed", type: "error" },
+  { inputs: [], name: "PRNotMerged", type: "error" },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "bool", name: "enabled", type: "bool" },
+    ],
+    name: "AVSEnabled",
+    type: "event",
   },
   {
     anonymous: false,
     inputs: [
       {
-        indexed: false,
+        indexed: true,
         internalType: "uint256",
         name: "issueId",
         type: "uint256",
       },
       {
         indexed: false,
-        internalType: "bool",
-        name: "isApproved",
-        type: "bool",
+        internalType: "uint256",
+        name: "claimIndex",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "taskId",
+        type: "uint256",
       },
     ],
-    name: "PRVerified",
+    name: "AVSTaskCreated",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "issueId",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "claimIndex",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "developer",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "rewardAmount",
+        type: "uint256",
+      },
+    ],
+    name: "ClaimValidated",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "issueId",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "FundsWithdrawn",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "issueId",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "bountyAmount",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "maxClaims",
+        type: "uint256",
+      },
+    ],
+    name: "IssueCreated",
     type: "event",
   },
   {
@@ -69,10 +188,38 @@ export const ISSUE_ABI = [
     type: "event",
   },
   {
+    inputs: [],
+    name: "avsContract",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "avsEnabled",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "bountyToken",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    name: "claimCounts",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
-      { internalType: "uint256", name: "issueId", type: "uint256" },
-      { internalType: "string", name: "prLink", type: "string" },
-      { internalType: "bool", name: "isMerged", type: "bool" },
+      { internalType: "uint256", name: "_issueId", type: "uint256" },
+      { internalType: "string", name: "_prLink", type: "string" },
+      { internalType: "bool", name: "_isMerged", type: "bool" },
     ],
     name: "claimReward",
     outputs: [],
@@ -80,12 +227,17 @@ export const ISSUE_ABI = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    inputs: [
+      { internalType: "uint256", name: "", type: "uint256" },
+      { internalType: "uint256", name: "", type: "uint256" },
+    ],
     name: "claims",
     outputs: [
       { internalType: "string", name: "prLink", type: "string" },
       { internalType: "bool", name: "isMerged", type: "bool" },
       { internalType: "address", name: "developer", type: "address" },
+      { internalType: "bool", name: "isValidated", type: "bool" },
+      { internalType: "uint256", name: "timestamp", type: "uint256" },
     ],
     stateMutability: "view",
     type: "function",
@@ -98,6 +250,7 @@ export const ISSUE_ABI = [
       { internalType: "string", name: "_description", type: "string" },
       { internalType: "string", name: "_repoLink", type: "string" },
       { internalType: "uint256", name: "_deadline", type: "uint256" },
+      { internalType: "uint256", name: "_maxClaims", type: "uint256" },
     ],
     name: "createIssue",
     outputs: [],
@@ -119,8 +272,10 @@ export const ISSUE_ABI = [
           { internalType: "uint256", name: "deadline", type: "uint256" },
           { internalType: "bool", name: "isOpen", type: "bool" },
           { internalType: "address", name: "owner", type: "address" },
+          { internalType: "uint256", name: "maxClaims", type: "uint256" },
+          { internalType: "uint256", name: "currentClaims", type: "uint256" },
         ],
-        internalType: "struct IssuesClaim.Issue[]",
+        internalType: "struct IIssuesClaim.Issue[]",
         name: "",
         type: "tuple[]",
       },
@@ -129,7 +284,10 @@ export const ISSUE_ABI = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "uint256", name: "issueId", type: "uint256" }],
+    inputs: [
+      { internalType: "uint256", name: "_issueId", type: "uint256" },
+      { internalType: "uint256", name: "_claimIndex", type: "uint256" },
+    ],
     name: "getClaimResponse",
     outputs: [
       {
@@ -139,9 +297,10 @@ export const ISSUE_ABI = [
           { internalType: "uint256", name: "bountyAmount", type: "uint256" },
           { internalType: "address", name: "developer", type: "address" },
           { internalType: "bool", name: "isApproved", type: "bool" },
+          { internalType: "bool", name: "isValidated", type: "bool" },
           { internalType: "uint256", name: "timestamp", type: "uint256" },
         ],
-        internalType: "struct IssuesClaim.Response",
+        internalType: "struct IIssuesClaim.Response",
         name: "",
         type: "tuple",
       },
@@ -164,8 +323,10 @@ export const ISSUE_ABI = [
           { internalType: "uint256", name: "deadline", type: "uint256" },
           { internalType: "bool", name: "isOpen", type: "bool" },
           { internalType: "address", name: "owner", type: "address" },
+          { internalType: "uint256", name: "maxClaims", type: "uint256" },
+          { internalType: "uint256", name: "currentClaims", type: "uint256" },
         ],
-        internalType: "struct IssuesClaim.Issue",
+        internalType: "struct IIssuesClaim.Issue",
         name: "",
         type: "tuple",
       },
@@ -193,15 +354,24 @@ export const ISSUE_ABI = [
       { internalType: "uint256", name: "deadline", type: "uint256" },
       { internalType: "bool", name: "isOpen", type: "bool" },
       { internalType: "address", name: "owner", type: "address" },
+      { internalType: "uint256", name: "maxClaims", type: "uint256" },
+      { internalType: "uint256", name: "currentClaims", type: "uint256" },
     ],
     stateMutability: "view",
     type: "function",
   },
   {
-    inputs: [],
-    name: "lazyToken",
-    outputs: [{ internalType: "contract IERC20", name: "", type: "address" }],
-    stateMutability: "view",
+    inputs: [{ internalType: "bool", name: "_enabled", type: "bool" }],
+    name: "setAVSEnabled",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "_newAVS", type: "address" }],
+    name: "updateAVSContract",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -212,15 +382,40 @@ export const ISSUE_ABI = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "string", name: "prLink", type: "string" }],
+    inputs: [
+      { internalType: "uint256", name: "_issueId", type: "uint256" },
+      { internalType: "uint256", name: "_claimIndex", type: "uint256" },
+      { internalType: "bool", name: "_isValid", type: "bool" },
+    ],
+    name: "validateClaim",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "validator",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "string", name: "_prLink", type: "string" }],
     name: "verifyMergeStatus",
     outputs: [{ internalType: "bool", name: "", type: "bool" }],
     stateMutability: "view",
     type: "function",
   },
+  {
+    inputs: [{ internalType: "uint256", name: "_issueId", type: "uint256" }],
+    name: "withdrawRemainingFunds",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
 ];
 
-export const LAZY_TOKEN_ABI = [
+export const MANTLE_USD_ABI = [
   { inputs: [], stateMutability: "nonpayable", type: "constructor" },
   {
     inputs: [
@@ -357,10 +552,27 @@ export const LAZY_TOKEN_ABI = [
     type: "function",
   },
   {
+    inputs: [{ internalType: "uint256", name: "amount", type: "uint256" }],
+    name: "burn",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "decimals",
     outputs: [{ internalType: "uint8", name: "", type: "uint8" }],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "to", type: "address" },
+      { internalType: "uint256", name: "amount", type: "uint256" },
+    ],
+    name: "mint",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {

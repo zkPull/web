@@ -5,6 +5,7 @@ export interface CreateIssueParams {
   description: string;
   repoLink: string;
   deadline: bigint;
+  maxClaims: bigint;
 }
 
 export interface DatePickerProps {

@@ -1,8 +1,8 @@
 import {
   ISSUE_ADDRESS,
   ISSUE_ABI,
-  LAZYTOKEN_ADDRESS,
-  LAZY_TOKEN_ABI,
+  MANTLE_USD_ADDRESS,
+  MANTLE_USD_ABI,
 } from "@/config/const";
 import {
   useWriteContract,
@@ -63,8 +63,8 @@ export const useClaimRewards = (prLink: string) => {
         return;
       }
       writeApproval({
-        abi: LAZY_TOKEN_ABI,
-        address: LAZYTOKEN_ADDRESS,
+        abi: MANTLE_USD_ABI,
+        address: MANTLE_USD_ADDRESS,
         functionName: "approve",
         args: [ISSUE_ADDRESS, BigInt(params.bountyAmount)],
       });

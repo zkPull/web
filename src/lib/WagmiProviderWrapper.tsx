@@ -11,8 +11,21 @@ import {
 } from "@rainbow-me/rainbowkit";
 import { rabbyWallet } from "@rainbow-me/rainbowkit/wallets";
 import { useState, useEffect } from 'react';
+import { defineChain } from 'viem';
 
 import "@rainbow-me/rainbowkit/styles.css";
+
+const mantleSepoliaCustom = defineChain({
+    ...mantleSepoliaTestnet,
+    rpcUrls: {
+        default: {
+            http: ['https://mantle-sepolia.g.alchemy.com/v2/jsv8qLwrBKaShfeL_NJzfHbWoj5h-hnM'],
+        },
+        public: {
+            http: ['https://mantle-sepolia.g.alchemy.com/v2/jsv8qLwrBKaShfeL_NJzfHbWoj5h-hnM'],
+        },
+    },
+});
 
 const queryClient = new QueryClient();
 const { wallets } = getDefaultWallets();
@@ -26,7 +39,7 @@ const config = getDefaultConfig({
             wallets: [rabbyWallet],
         },
     ],
-    chains: [mantleSepoliaTestnet],
+    chains: [mantleSepoliaCustom],
     ssr: true,
 });
 
