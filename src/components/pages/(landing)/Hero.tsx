@@ -86,17 +86,31 @@ export default function Hero() {
             </p>
 
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <span className="text-base text-gray-700 font-medium">
-                  Built on
-                </span>
-                <Image
-                  src="/images/Logo/mantle-logo.png"
-                  alt="Mantle"
-                  width={120}
-                  height={36}
-                  className="opacity-80"
-                />
+              <div className="flex flex-col gap-3 md:flex-row md:gap-6">
+                <div className="flex items-center gap-3">
+                  <span className="text-base text-gray-700 font-medium">
+                    Built on
+                  </span>
+                  <Image
+                    src="/images/Logo/mantle-logo.png"
+                    alt="Mantle"
+                    width={120}
+                    height={36}
+                    className="opacity-80"
+                  />
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-base text-gray-700 font-medium">
+                    Powered by
+                  </span>
+                  <Image
+                    src="/images/Logo/eigenlayer-seeklogo.svg"
+                    alt="AVS EigenLayer"
+                    width={80}
+                    height={36}
+                    className="opacity-80"
+                  />
+                </div>
               </div>
               <ShimmerButton>
                 <Link href="/issues" className="flex items-center gap-2">

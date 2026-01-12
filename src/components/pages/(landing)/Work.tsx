@@ -113,7 +113,7 @@ export default function Work() {
                   </h3>
                 </div>
                 <p className="text-sm text-gray-600 mb-2">
-                  zkTLS technology verifies the merge automatically and
+                  zkTLS and AVS technology verify the merge automatically and
                   securely.
                 </p>
                 <p className="text-sm text-gray-600">

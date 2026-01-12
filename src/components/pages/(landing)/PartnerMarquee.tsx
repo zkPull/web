@@ -50,7 +50,7 @@ export default function PartnerMarquee() {
 
       <div className="bg-white overflow-hidden border-t border-gray-300">
         <main className="px-8 py-12 bg-gray-50">
-          <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">
+          <h2 className="text-2xl font-semibold text-gray-900 text-center mb-8">
             Powered By
           </h2>
           <div className="relative flex w-full items-center justify-center overflow-hidden">
