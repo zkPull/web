@@ -704,10 +704,12 @@ pnpm type-check
 Ensure all environment variables are set in production:
 
 ```bash
-NEXT_PUBLIC_ISSUE_ADDRESS=<production-contract-address>
-NEXT_PUBLIC_MANTLEUSD_ADDRESS=<production-token-address>
-NEXT_PUBLIC_ALCHEMY_RPC=<production-rpc-url>
-NEXT_PUBLIC_APP_URL=<production-domain>
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=
+NEXT_PUBLIC_ISSUE_ADDRESS=
+NEXT_PUBLIC_MANTLEUSD_ADDRESS=
+NEXT_PUBLIC_GITHUB_CLIENT_ID=
+NEXT_PUBLIC_ZK_BACKEND_GENERATE_PROOF=
+NEXT_PUBLIC_ZK_BACKEND_GET_ACCESS_TOKEN=
 ```
 
 ---
