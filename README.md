@@ -100,7 +100,6 @@ zkPull addresses these challenges through:
 - **RainbowKit 2.2.4**: Wallet connection interface
 
 ### State Management
-- **Zustand 5.0.3**: Lightweight state management
 - **React Hooks**: Built-in state handling
 
 ### UI Components
@@ -191,7 +190,6 @@ src/
 │   │   ├── use-mint-tokens.tsx  # Token minting
 │   │   ├── use-balance.tsx      # Balance checking
 │   │   └── use-wallet.tsx       # Wallet management
-│   ├── store/                   # Zustand stores
 │   └── utils.ts                 # Utility functions
 │
 ├── config/                       # Configuration files
@@ -473,15 +471,6 @@ AVS Validation:
 ├── Network information
 └── Balance display
 ```
-
-### State Management
-
-The application uses Zustand stores for:
-
-- **Wallet State**: Connected address, balance, network
-- **Issue State**: Loaded issues, filters, selected issue
-- **Transaction State**: Pending transactions, confirmations
-- **UI State**: Modal visibility, loading states
 
 ### Custom Hooks
 
@@ -776,14 +765,6 @@ Test scenarios on Mantle Sepolia:
 - Built-in API routes
 - Optimal code splitting
 - Fast refresh during development
-
-### Why Zustand over Redux?
-
-- Lightweight (minimal bundle size)
-- Simple API (less boilerplate)
-- TypeScript-first design
-- No provider wrapping needed
-- Easier to test
 
 ### Why Wagmi + Viem?
 
