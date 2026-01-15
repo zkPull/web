@@ -1,7 +1,7 @@
 <div align="center">
   <img src="public/images/Logo/zkpull-logo.png" alt="zkPull Logo" width="200"/>
 
-  # zkPull Platform
+  # zkPull
 
   **Decentralized Open Source Contribution Rewards System**
 
